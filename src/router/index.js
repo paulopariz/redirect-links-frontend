@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ListView from '../views/ListView'
+import EditView from '../views/EditView'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/lista',
     name: 'lista',
     component: ListView
+  },
+  {
+    path: '/editar/:id',
+    name: 'editar',
+    component: EditView
   },
 ]
 

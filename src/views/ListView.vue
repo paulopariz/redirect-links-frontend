@@ -8,6 +8,8 @@
         <input type="checkbox" id="my-modal-3" class="modal-toggle" />
         <div class="modal">
             <div class="modal-box relative">
+                <h1 class="block  text-4xl text-slate-900">ADICIONAR</h1>
+
                 <label for="my-modal-3" class="btn btn-sm  absolute right-2 top-2">✕</label>
 
                 <div class="relative py-3 sm:w-96 mx-auto text-center">
@@ -15,23 +17,17 @@
                         <div class="h-2 "></div>
                         <div class="px-8 py-6 ">
                             <label class="block font-semibold"> Nome</label>
-                            <input
-                                v-model="nome" 
-                                type="text" placeholder="Nome"
+                            <input v-model="nome" type="text" placeholder="Nome"
                                 class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none rounded-md">
 
                             <label class="block mt-3 font-semibold"> Email </label>
-                            <input 
-                                v-model="email"
-                                type="email" placeholder="Email"
+                            <input v-model="email" type="email" placeholder="Email"
                                 class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none rounded-md">
 
 
                             <div class="flex justify-between items-baseline">
 
-                                <button 
-                                    @click="addUser"
-                                    class="mt-4 btn py-3 px-6 text-xs rounded-md  ">Salvar</button>
+                                <button @click="addUser" class="mt-4 btn py-3 px-6 text-xs rounded-md  ">Salvar</button>
 
                             </div>
                         </div>
@@ -56,7 +52,9 @@
                     <tr v-for="user in listagem" :key="user.id">
                         <td>{{ user.nome }}</td>
                         <td>{{ user.email }}</td>
-                        <td><button class="btn btn-primary ">Editar</button></td>
+                        <td>
+                            <router-link class="btn btn-primary" to="/editar/3">Editar</router-link>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -65,7 +63,10 @@
 </template>
 
 <script>
+
     export default {
+        components: {
+},
         data() {
             return {
                 listagem: [],
@@ -79,10 +80,16 @@
 
             },
 
-            addUser(){
-                this.listagem.push({nome:this.nome, email:this.email})
+            addUser() {
+                this.listagem.push({
+                    nome: this.nome,
+                    email: this.email
+                })
                 this.nome = ''
                 this.email = ''
+            },
+            editUser() {
+
             }
         },
 
