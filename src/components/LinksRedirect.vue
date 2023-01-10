@@ -37,8 +37,8 @@
 
           <div class="mt-6 flex items-center gap-16 border-b-2 border-gray-100 pb-4">
             <router-link class="text-sm underline decoration-solid tracking-wider" to=""
-              >Clique aqui para acessar</router-link
-            >
+              >Clique aqui para acessar
+            </router-link>
 
             <button class="btn btn-outline btn-primary text-xs px-10 py-2 btn-sm">
               Editar Links
@@ -85,8 +85,8 @@
     <!---MODAL CRIAR --->
     <input type="checkbox" id="my-modal-5" class="modal-toggle" />
     <div class="modal">
-      <div class="modal-box w-2/4 max-w-5xl relative p-0 rounded-none">
-        <header class="p-4 px-6 bg-black flex items-center justify-between">
+      <div class="modal-box w-2/5 max-w-5xl relative p-0 rounded-none">
+        <header class="p-4 px-12 bg-black flex items-center justify-between">
           <h1 class="text-white text-sm">Criação de Link</h1>
 
           <label for="my-modal-5">
@@ -94,14 +94,14 @@
           </label>
         </header>
 
-        <div class="p-4 px-6 mt-5">
+        <div class="p-4 px-12 mt-5">
           <div class="grid">
             <label class="text-sm font-semibold">Título do Link</label>
             <input
               v-model="nome"
               type="text"
               placeholder="Ex: Link Legal"
-              class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
+              class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-6 focus:outline-none w-3/4"
             />
           </div>
 
@@ -112,30 +112,75 @@
               inserir a quantidade de cliques junto à URL.
             </p>
           </div>
-        </div>
 
-        <div class="relative py-3 sm:w-96 mx-auto">
-          <div class="mt-4 bg-white text-left">
-            <div class="h-2"></div>
-            <div class="px-8 py-6">
-              <label class="block mt-3 font-semibold"> Email </label>
+          <div>
+            <div class="flex items-center justify-between mt-8">
+              <h1 class="font-semibold text-sm">01</h1>
               <input
                 v-model="email"
-                type="email"
-                placeholder="Email"
-                class="border w-full h-5 px-3 py-5 mt-2 p-3 hover:outline-none focus:outline-none rounded-md"
+                type="text"
+                placeholder="Insira a URL 1"
+                class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
               />
 
-              <div class="flex justify-between items-baseline">
-                <label
-                  @click="addLink"
-                  for="my-modal-5"
-                  class="btn mt-4 py-3 px-6 text-xs rounded-md"
-                  >Salvar</label
-                >
-              </div>
+              <input
+                class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
+                placeholder="qtd cliques"
+                type="number"
+              />
+            </div>
+            <div class="flex items-center justify-between mt-8">
+              <h1 class="font-semibold text-sm">02</h1>
+              <input
+                v-model="email"
+                type="text"
+                placeholder="Insira a URL 2"
+                class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
+              />
+
+              <input
+                class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
+                placeholder="qtd cliques"
+                type="number"
+              />
+            </div>
+            <div class="flex items-center justify-between mt-8">
+              <h1 class="font-semibold text-sm">03</h1>
+              <input
+                v-model="email"
+                type="text"
+                placeholder="Insira a URL 3"
+                class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
+              />
+
+              <input
+                class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
+                placeholder="qtd cliques"
+                type="number"
+              />
             </div>
           </div>
+
+          <div class="mt-14">
+            <h1 class="text-primary text-sm font-semibold">URL Default</h1>
+            <p class="mt-3 text-gray-500 text-xs">
+              Essa URL será associada ao redirecionamento apenas quando todas as outras
+              chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
+            </p>
+            <input
+              v-model="nome"
+              type="text"
+              placeholder="Insira a URL Default"
+              class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-6 focus:outline-none w-3/4"
+            />
+          </div>
+          <label
+            @click="addLink"
+            for="my-modal-5"
+            class="btn mt-4 py-3 px-6 text-xs rounded-md btn-primary btn-wide float-right mb-4"
+          >
+            Salvar Link 💪
+          </label>
         </div>
       </div>
     </div>
