@@ -1,10 +1,17 @@
 <template>
-    <div>
+    <div class="container m-auto">
 
-        <!-- The button to open modal -->
-        <label for="my-modal-3" class="btn btn-accent">Adicionar User</label>
+        <header class="flex justify-between items-center mt-16">
+            <div class="float-left text-left">
+                <h1 class="text-xl text-gray-900 font-semibold">Links de Redirecionamento 🌐 </h1>
+                <span class="text-sm text-gray-500">Crie seus links de redirect em poucos passos</span>
+            </div>
+            <div>
+                <label for="my-modal-3" class="btn btn-primary py-2 px-9 text-sm">Criar um Link</label>
+            </div>
+        </header>
 
-        <!-- Put this part before </body> tag -->
+        <!---MODAL CRIAR --->
         <input type="checkbox" id="my-modal-3" class="modal-toggle" />
         <div class="modal">
             <div class="modal-box relative">
@@ -12,7 +19,7 @@
 
                 <label for="my-modal-3" class="btn btn-sm  absolute right-2 top-2">✕</label>
 
-                <div class="relative py-3 sm:w-96 mx-auto text-center">
+                <div class="relative py-3 sm:w-96 mx-auto ">
                     <div class="mt-4 bg-white text-left">
                         <div class="h-2 "></div>
                         <div class="px-8 py-6 ">
@@ -37,6 +44,19 @@
             </div>
         </div>
 
+        <div class="flex items-center mt-12">
+            <div class=" border-gray-100 border-t-2 border-r-2 h-screen w-2/5">
+
+                <div class="flex items-center justify-between mt-2 border-b-2 border-gray-100 py-5 pr-8 ">
+                    <h1 class="text-primary font-semibold ">00 Links</h1>
+                    <p class="font-normal text-gray-500 text-sm">Cliques</p>
+                </div>
+            </div>
+
+            <div class=" border-gray-100 border-t-2 h-screen w-3/5">
+            
+            </div>
+        </div>
 
         <div class="overflow-x-auto m-auto mt-6">
             <table class="table w-full text-center">
@@ -53,7 +73,7 @@
                         <td>{{ user.name }}</td>
                         <td>{{ user.email }}</td>
                         <td>
-                            <router-link class="btn btn-primary" to="/editar/3"  >Editar</router-link>
+                            <router-link class="btn btn-primary" to="/editar/3">Editar</router-link>
                         </td>
                     </tr>
                 </tbody>
