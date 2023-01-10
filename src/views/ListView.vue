@@ -27,7 +27,7 @@
 
                             <div class="flex justify-between items-baseline">
 
-                                <button @click="addUser" class="mt-4 btn py-3 px-6 text-xs rounded-md  ">Salvar</button>
+                                <button @click="addLink" class="mt-4 btn py-3 px-6 text-xs rounded-md  ">Salvar</button>
 
                             </div>
                         </div>
@@ -50,10 +50,10 @@
                 </thead>
                 <tbody>
                     <tr v-for="user in listagem" :key="user.id">
-                        <td>{{ user.nome }}</td>
+                        <td>{{ user.name }}</td>
                         <td>{{ user.email }}</td>
                         <td>
-                            <router-link class="btn btn-primary" to="/editar/3">Editar</router-link>
+                            <router-link class="btn btn-primary" to="/editar/3"  >Editar</router-link>
                         </td>
                     </tr>
                 </tbody>
@@ -63,15 +63,14 @@
 </template>
 
 <script>
-
     export default {
-        components: {
-},
+        components: {},
         data() {
             return {
                 listagem: [],
-                nome: '',
-                email: ''
+                name: '',
+                email: '',
+                spiner: 'dgdfgdfgdfg'
             }
         },
 
@@ -80,22 +79,26 @@
 
             },
 
-            addUser() {
-                this.listagem.push({
-                    nome: this.nome,
+            addLink() {
+                this.spiner
+                var data = {
+                    name: this.nome,
                     email: this.email
+                }
+                this.$http.post('adicionar', data).then((response) => {
+                    console.log(response)
                 })
+
+                this.listagem.push(data)
                 this.nome = ''
                 this.email = ''
-            },
-            editUser() {
 
-            }
+            },
         },
 
         created() {
             var list = [{
-                nome: 'paulo',
+                name: 'paulo',
                 email: 'paulo@gmail.com',
                 id: '1'
             }]
