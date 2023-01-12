@@ -5,7 +5,7 @@
     <div class="p-4 px-12 mt-9">
       <div class="grid">
         <label class="text-xl font-semibold">Título do Link</label>
-        <input  type="text" placeholder="Ex: Link Legal"
+        <input v-model="nome"  type="text" placeholder="Ex: Link Legal"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-6 focus:outline-none w-3/4" />
       </div>
 
@@ -20,7 +20,7 @@
       <div class="mt-14">
         <div class="flex items-center justify-between mt-8">
           <h1 class="font-semibold text-base">01</h1>
-          <input type="text" placeholder="Insira a URL 1"
+          <input v-model="email" type="text" placeholder="Insira a URL 1"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4" />
 
           <input class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
@@ -76,6 +76,27 @@
 
 <script>
   export default {
-    name: 'RedirectEdit'
+    name: 'RedirectEdit',
+
+
+    data() {
+            return {
+                nome: '',
+                email: '',
+            }
+        },
+
+        methods: {
+            getUser() {
+                this.$http.get(`editar/${this.$route.params.id}`).then((response) =>{
+                    this.nome = response.data.nome
+                    this.email = response.data.email
+                })
+            }
+        },
+
+        created () {
+            this.getUser();
+        },
   }
 </script>

@@ -20,5 +20,7 @@
         components: {
             RedirectEdit
         },
+
+       
     }
 </script>

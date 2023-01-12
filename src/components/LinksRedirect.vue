@@ -24,9 +24,9 @@
 
 
       <div class="border-gray-100 border-t-2 h-screen w-7/12">
-        <div class="mt-20 pl-8" v-show="ShowLinks">
+        <div class="mt-20 pl-8" v-show="ShowLinks" v-for="user in listagem" :key="user.id">
           <div class="flex items-center gap-10">
-            <h1 class="text-2xl font-semibold">Link teste</h1>
+            <h1 class="text-2xl font-semibold">{{ user.nome }}</h1>
             <span class="text-sm text-gray-500 font-normal">Criado em: 01/01/2023</span>
           </div>
 
@@ -34,7 +34,7 @@
             <router-link class="text-sm underline decoration-solid tracking-wider" to="">Clique aqui para acessar
             </router-link>
 
-            <router-link to="/editar/3">
+            <router-link :to="{name: 'editar', params: {id:user.id}}">
               <button class="btn btn-outline btn-primary text-xs px-10 py-2 btn-sm">
                 Editar Links
               </button>
