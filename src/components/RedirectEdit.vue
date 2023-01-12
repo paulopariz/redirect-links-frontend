@@ -56,11 +56,10 @@
 
 
       <div class="mt-12 float-right mb-4">
-        <router-link to="/lista">
-          <button class="btn py-3 px-6 text-sm rounded-md btn-wide mr-2">
-            Cancelar
-          </button>
-        </router-link>
+        <button @click="deletar"
+          class="btn btn-outline mr-2 border-none py-3 px-6 text-sm rounded-md btn-wide bg-red-600 text-white hover:bg-red-700 ">
+            Exluir
+        </button>
         <label @click="update" for="my-modal-5" class="btn py-3 px-6 text-sm rounded-md btn-primary btn-wide ">
           Editar Link 💪
         </label>
@@ -99,14 +98,27 @@
           email: this.email
         }
 
-        this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) =>{
+        this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
           console.log(response)
         })
 
         setTimeout(() => {
-          this.$router.push('/lista')
+          this.$router.push('/listar')
         }, 2000)
       },
+
+
+
+      deletar(){
+        this.$http.delete(`deletar/${this.$route.params.id}`).then((response) => {
+          if(response.data == 'success'){
+            this.deleteAlert = true
+            setTimeout(() => {
+              this.$router.push('/listar')
+            }, 1000)
+          }
+        })
+      }
 
 
     },

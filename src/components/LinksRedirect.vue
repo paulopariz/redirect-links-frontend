@@ -1,10 +1,20 @@
 <template>
   <div>
+
     <div class="flex items-center mt-12">
       <div class="border-gray-100 border-t-2 border-r-2 h-screen w-5/12">
         <div class="flex items-center justify-between mt-2 border-b-2 border-gray-100 py-5 pr-8">
           <h1 class="text-primary font-semibold">00 Links</h1>
           <p class="font-normal text-gray-500 text-sm">Cliques</p>
+        </div>
+        <div v-if="deleteAlert" class="alert alert-success shadow-lg btn-wide mt-5">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Excuido com sucesso</span>
+          </div>
         </div>
 
         <div @click="btnShowLinks" v-for="link in listagem" :key="link.id"
@@ -34,11 +44,13 @@
             <router-link class="text-sm underline decoration-solid tracking-wider" to="">Clique aqui para acessar
             </router-link>
 
-            <router-link :to="{name: 'editar', params: {id:link.id}}">
-              <button class="btn btn-outline btn-primary text-xs px-10 py-2 btn-sm">
-                Editar Links
-              </button>
-            </router-link>
+            
+              <router-link :to="{name: 'editar', params: {id:link.id}}">
+                <button class="btn btn-outline btn-primary text-xs px-10 py-2 btn-sm">
+                  Editar Links
+                </button>
+              </router-link>
+              
           </div>
 
           <div class="mt-11">
@@ -113,7 +125,7 @@
             </div>
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">02</h1>
-              <input  type="text" placeholder="Insira a URL 2"
+              <input type="text" placeholder="Insira a URL 2"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4" />
 
               <input class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
@@ -135,7 +147,7 @@
               Essa URL será associada ao redirecionamento apenas quando todas as outras
               chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
             </p>
-            <input  type="text" placeholder="Insira a URL Default"
+            <input type="text" placeholder="Insira a URL Default"
               class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-6 focus:outline-none w-3/4" />
           </div>
           <label @click="addLink" for="my-modal-5"
@@ -157,6 +169,7 @@
         listagem: [],
         name: "",
         email: "",
+        deleteAlert: false,
 
         ShowLinks: false,
       };
@@ -187,9 +200,17 @@
         this.email = "";
       },
 
-      showListagem(){
-        this.$http.get('lista').then((response) => {
+      showListagem() {
+        this.$http.get('listar').then((response) => {
           this.listagem = response.data
+        })
+      },
+
+      deletar(){
+        this.$http.delete(`delete/${this.$route.params.id}`).then((response) => {
+          if(response.data == 'success'){
+            this.deleteAlert = true
+          }
         })
       }
     },

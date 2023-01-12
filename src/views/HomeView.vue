@@ -2,7 +2,7 @@
   <div>
       <div class="w-24 border-r-2 h-screen flex flex-col justify-around">
 
-        <router-link to="/lista">
+        <router-link to="/listar">
           <img class="w-1/3 m-auto" :src="iconRoute">
         </router-link> 
 
