@@ -10,7 +10,7 @@
         <div @click="btnShowLinks" v-for="user in listagem" :key="user.id"
           class="flex items-center justify-between cursor-pointer mt-2 border-b-2 border-gray-100 py-5 pr-8">
           <div class="grid grid-cols-2 text-left">
-            <h1 class="font-semibold text-lg focus:text-primary">{{ user.name }}</h1>
+            <h1 class="font-semibold text-lg focus:text-primary">{{ user.nome }}</h1>
             <span class="font-normal text-xs ml-6 mt-1">01/01/2023</span>
 
             <button class="mt-3 text-sm underline decoration-solid w-0 text-primary">
@@ -21,6 +21,7 @@
           <span class="text-sm font-normal">👉 02/750 </span>
         </div>
       </div>
+
 
       <div class="border-gray-100 border-t-2 h-screen w-7/12">
         <div class="mt-20 pl-8" v-show="ShowLinks">
@@ -112,7 +113,7 @@
             </div>
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">02</h1>
-              <input v-model="email" type="text" placeholder="Insira a URL 2"
+              <input  type="text" placeholder="Insira a URL 2"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4" />
 
               <input class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
@@ -120,7 +121,7 @@
             </div>
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">03</h1>
-              <input v-model="email" type="text" placeholder="Insira a URL 3"
+              <input type="text" placeholder="Insira a URL 3"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4" />
 
               <input class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
@@ -134,7 +135,7 @@
               Essa URL será associada ao redirecionamento apenas quando todas as outras
               chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
             </p>
-            <input v-model="nome" type="text" placeholder="Insira a URL Default"
+            <input  type="text" placeholder="Insira a URL Default"
               class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-6 focus:outline-none w-3/4" />
           </div>
           <label @click="addLink" for="my-modal-5"
@@ -169,28 +170,32 @@
       addListagem() {},
 
       addLink() {
-        this.spiner;
         var data = {
           name: this.nome,
           email: this.email,
         };
+        var data2 = {
+          name: this.name,
+          email: this.email,
+        };
         this.$http.post("adicionar", data).then((response) => {
           console.log(response);
-        });
+        })
 
-        this.listagem.push(data);
-        this.nome = "";
+        this.listagem.push(data2);
+        this.name = "";
         this.email = "";
       },
+
+      showListagem(){
+        this.$http.get('lista').then((response) => {
+          this.listagem = response.data
+        })
+      }
     },
 
     created() {
-      var list = [{
-        name: "Link teste",
-        email: "https://www.google.com.br/",
-        id: "1",
-      }, ];
-      this.listagem = list;
+      this.showListagem()
     },
   };
 </script>

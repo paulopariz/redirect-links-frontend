@@ -26,8 +26,6 @@ export default {
     LinksRedirect,
   },
 
-  data() {
-    return {};
-  },
+  
 };
 </script>

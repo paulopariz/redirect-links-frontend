@@ -5,7 +5,7 @@
     <div class="p-4 px-12 mt-9">
       <div class="grid">
         <label class="text-xl font-semibold">Título do Link</label>
-        <input v-model="nome" type="text" placeholder="Ex: Link Legal"
+        <input  type="text" placeholder="Ex: Link Legal"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-6 focus:outline-none w-3/4" />
       </div>
 
@@ -20,7 +20,7 @@
       <div class="mt-14">
         <div class="flex items-center justify-between mt-8">
           <h1 class="font-semibold text-base">01</h1>
-          <input v-model="email" type="text" placeholder="Insira a URL 1"
+          <input type="text" placeholder="Insira a URL 1"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4" />
 
           <input class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
@@ -28,7 +28,7 @@
         </div>
         <div class="flex items-center justify-between mt-14">
           <h1 class="font-semibold text-base">02</h1>
-          <input v-model="email" type="text" placeholder="Insira a URL 2"
+          <input type="text" placeholder="Insira a URL 2"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4" />
 
           <input class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
@@ -36,7 +36,7 @@
         </div>
         <div class="flex items-center justify-between mt-14">
           <h1 class="font-semibold text-base">03</h1>
-          <input v-model="email" type="text" placeholder="Insira a URL 3"
+          <input type="text" placeholder="Insira a URL 3"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4" />
 
           <input class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
@@ -50,7 +50,7 @@
           Essa URL será associada ao redirecionamento apenas quando todas as outras
           chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
         </p>
-        <input v-model="nome" type="text" placeholder="Insira a URL Default"
+        <input  type="text" placeholder="Insira a URL Default"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-8 focus:outline-none w-3/4" />
       </div>
 
@@ -61,7 +61,7 @@
             Cancelar
           </button>
         </router-link> 
-        <label @click="addLink" for="my-modal-5"
+        <label  for="my-modal-5"
           class="btn py-3 px-6 text-sm rounded-md btn-primary btn-wide ">
           Editar Link 💪
         </label>
