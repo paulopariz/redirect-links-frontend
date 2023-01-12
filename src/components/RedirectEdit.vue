@@ -5,7 +5,7 @@
     <div class="p-4 px-12 mt-9">
       <div class="grid">
         <label class="text-xl font-semibold">Título do Link</label>
-        <input v-model="nome"  type="text" placeholder="Ex: Link Legal"
+        <input v-model="nome" type="text" placeholder="Ex: Link Legal"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-6 focus:outline-none w-3/4" />
       </div>
 
@@ -50,7 +50,7 @@
           Essa URL será associada ao redirecionamento apenas quando todas as outras
           chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
         </p>
-        <input  type="text" placeholder="Insira a URL Default"
+        <input type="text" placeholder="Insira a URL Default"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-8 focus:outline-none w-3/4" />
       </div>
 
@@ -60,9 +60,8 @@
           <button class="btn py-3 px-6 text-sm rounded-md btn-wide mr-2">
             Cancelar
           </button>
-        </router-link> 
-        <label  for="my-modal-5"
-          class="btn py-3 px-6 text-sm rounded-md btn-primary btn-wide ">
+        </router-link>
+        <label @click="update" for="my-modal-5" class="btn py-3 px-6 text-sm rounded-md btn-primary btn-wide ">
           Editar Link 💪
         </label>
 
@@ -80,23 +79,40 @@
 
 
     data() {
-            return {
-                nome: '',
-                email: '',
-            }
-        },
+      return {
+        nome: '',
+        email: '',
+      }
+    },
 
-        methods: {
-            getUser() {
-                this.$http.get(`editar/${this.$route.params.id}`).then((response) =>{
-                    this.nome = response.data.nome
-                    this.email = response.data.email
-                })
-            }
-        },
+    methods: {
+      getUser() {
+        this.$http.get(`editar/${this.$route.params.id}`).then((response) => {
+          this.nome = response.data.nome
+          this.email = response.data.email
+        })
+      },
 
-        created () {
-            this.getUser();
-        },
+      update() {
+        var data = {
+          name: this.nome,
+          email: this.email
+        }
+
+        this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) =>{
+          console.log(response)
+        })
+
+        setTimeout(() => {
+          this.$router.push('/lista')
+        }, 2000)
+      },
+
+
+    },
+
+    created() {
+      this.getUser();
+    },
   }
 </script>

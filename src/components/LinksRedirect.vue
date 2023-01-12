@@ -7,10 +7,10 @@
           <p class="font-normal text-gray-500 text-sm">Cliques</p>
         </div>
 
-        <div @click="btnShowLinks" v-for="user in listagem" :key="user.id"
+        <div @click="btnShowLinks" v-for="link in listagem" :key="link.id"
           class="flex items-center justify-between cursor-pointer mt-2 border-b-2 border-gray-100 py-5 pr-8">
           <div class="grid grid-cols-2 text-left">
-            <h1 class="font-semibold text-lg focus:text-primary">{{ user.nome }}</h1>
+            <h1 class="font-semibold text-lg focus:text-primary">{{ link.nome }}</h1>
             <span class="font-normal text-xs ml-6 mt-1">01/01/2023</span>
 
             <button class="mt-3 text-sm underline decoration-solid w-0 text-primary">
@@ -24,9 +24,9 @@
 
 
       <div class="border-gray-100 border-t-2 h-screen w-7/12">
-        <div class="mt-20 pl-8" v-show="ShowLinks" v-for="user in listagem" :key="user.id">
+        <div class="mt-20 pl-8" v-show="ShowLinks" v-for="link in listagem" :key="link.id">
           <div class="flex items-center gap-10">
-            <h1 class="text-2xl font-semibold">{{ user.nome }}</h1>
+            <h1 class="text-2xl font-semibold">{{ link.nome }}</h1>
             <span class="text-sm text-gray-500 font-normal">Criado em: 01/01/2023</span>
           </div>
 
@@ -34,7 +34,7 @@
             <router-link class="text-sm underline decoration-solid tracking-wider" to="">Clique aqui para acessar
             </router-link>
 
-            <router-link :to="{name: 'editar', params: {id:user.id}}">
+            <router-link :to="{name: 'editar', params: {id:link.id}}">
               <button class="btn btn-outline btn-primary text-xs px-10 py-2 btn-sm">
                 Editar Links
               </button>
