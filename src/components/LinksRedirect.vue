@@ -5,26 +5,8 @@
         <div
           class="flex items-center justify-between mt-2 border-b-2 border-gray-100 py-5 pr-8"
         >
-          <h1 class="text-primary font-semibold">00 Links</h1>
+          <h1 class="text-primary font-semibold">{{ listagem.length }} Links</h1>
           <p class="font-normal text-gray-500 text-sm">Cliques</p>
-        </div>
-        <div v-if="deleteAlert" class="alert alert-success shadow-lg btn-wide mt-5">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="stroke-current flex-shrink-0 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span>Excuido com sucesso</span>
-          </div>
         </div>
 
         <div
@@ -35,7 +17,9 @@
         >
           <div class="grid grid-cols-2 text-left">
             <h1 class="font-semibold text-lg focus:text-primary">{{ link.nome }}</h1>
-            <span class="font-normal text-xs ml-6 mt-1">01/01/2023</span>
+            <span class="font-normal text-xs ml-6 mt-1">{{
+              moment(date).format("DD/MM/YYYY")
+            }}</span>
 
             <button class="mt-3 text-sm underline decoration-solid w-0 text-primary">
               Ver
@@ -55,7 +39,9 @@
         >
           <div class="flex items-center gap-10">
             <h1 class="text-2xl font-semibold">{{ link.nome }}</h1>
-            <span class="text-sm text-gray-500 font-normal">Criado em: 01/01/2023</span>
+            <span class="text-sm text-gray-500 font-normal"
+              >Criado em: {{ moment(date).format("DD/MM/YYYY [às] hh:mm") }}
+            </span>
           </div>
 
           <div class="mt-6 flex items-center gap-16 border-b-2 border-gray-100 pb-4">
@@ -210,11 +196,13 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   name: "LinksRedirect",
 
   data() {
     return {
+      moment: moment,
       listagem: [],
       name: "",
       email: "",
