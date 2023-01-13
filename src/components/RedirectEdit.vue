@@ -95,7 +95,8 @@
           </label>
 
           <label
-            for="my-modal-6"
+            @click="update"
+            for="my-modal-5"
             class="btn py-3 px-6 text-sm rounded-md btn-primary btn-wide"
           >
             Editar Link 💪
@@ -104,8 +105,6 @@
       </div>
     </div>
 
-    <!--MODAL UPDATE-->
-    <ModalUpdate />
     <!--MODAL DELETE-->
     <ModalDelete />
   </div>
@@ -113,7 +112,6 @@
 
 <script>
 import ModalDelete from "./ModalDelete.vue";
-import ModalUpdate from "./ModalUpdate.vue";
 
 export default {
   name: "RedirectEdit",
@@ -130,10 +128,16 @@ export default {
         this.email = response.data.email;
       });
     },
+    update() {
+      setTimeout(() => {
+        this.$swal("Sucesso", "Link editado com sucesso", "success");
+        this.$router.push("/listar");
+      }, 1300);
+    },
   },
   created() {
     this.getUser();
   },
-  components: { ModalDelete, ModalUpdate },
+  components: { ModalDelete },
 };
 </script>
