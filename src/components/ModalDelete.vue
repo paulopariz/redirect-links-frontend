@@ -3,10 +3,10 @@
     <input type="checkbox" id="my-modal" class="modal-toggle" />
     <div class="modal">
       <div class="modal-box rounded-none">
-        <h1 class="font-semibold text-xl text-center">Tem certeza que deseja ecluir?</h1>
+        <h1 class="font-semibold text-xl text-center">Tem certeza que deseja excluir?</h1>
 
         <div class="modal-action justify-center mt-14">
-          <label @click="deletar" for="my-modal" class="btn">NÃO, CANCELAR</label>
+          <label for="my-modal" class="btn">NÃO, CANCELAR</label>
           <label
             @click="deletar"
             for="my-modal"

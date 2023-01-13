@@ -95,8 +95,7 @@
           </label>
 
           <label
-            @click="update"
-            for="my-modal-5"
+            for="my-modal-6"
             class="btn py-3 px-6 text-sm rounded-md btn-primary btn-wide"
           >
             Editar Link 💪
@@ -105,48 +104,36 @@
       </div>
     </div>
 
+    <!--MODAL UPDATE-->
+    <ModalUpdate />
     <!--MODAL DELETE-->
     <ModalDelete />
   </div>
 </template>
 
 <script>
-import ModalDelete from './ModalDelete.vue';
+import ModalDelete from "./ModalDelete.vue";
+import ModalUpdate from "./ModalUpdate.vue";
 
 export default {
-    name: "RedirectEdit",
-    data() {
-        return {
-            nome: "",
-            email: "",
-        };
+  name: "RedirectEdit",
+  data() {
+    return {
+      nome: "",
+      email: "",
+    };
+  },
+  methods: {
+    getUser() {
+      this.$http.get(`editar/${this.$route.params.id}`).then((response) => {
+        this.nome = response.data.nome;
+        this.email = response.data.email;
+      });
     },
-    methods: {
-        getUser() {
-            this.$http.get(`editar/${this.$route.params.id}`).then((response) => {
-                this.nome = response.data.nome;
-                this.email = response.data.email;
-            });
-        },
-        update() {
-            var data = {
-                name: this.nome,
-                email: this.email,
-            };
-            this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
-                if (response.data == "success") {
-                    setTimeout(() => {
-                        this.$swal("Sucesso", "Link editado com sucesso", "success");
-                        this.$router.push("/listar");
-                    }, 1300);
-                }
-            });
-        },
-        
-    },
-    created() {
-        this.getUser();
-    },
-    components: { ModalDelete }
+  },
+  created() {
+    this.getUser();
+  },
+  components: { ModalDelete, ModalUpdate },
 };
 </script>
