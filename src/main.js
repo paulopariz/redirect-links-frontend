@@ -4,8 +4,18 @@ import router from './router'
 import store from './store'
 import './plugins/axios'
 import './assets/css/main.css'
+import VueSweetalert2 from "vue-sweetalert2"
 
 Vue.config.productionTip = false
+
+import "sweetalert2/dist/sweetalert2.min.css";
+
+Vue.use(VueSweetalert2);
+
+// If you don't need the styles, do not connect
+
+
+
 
 new Vue({
   router,
