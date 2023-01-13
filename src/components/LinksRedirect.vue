@@ -18,7 +18,7 @@
           <div class="grid grid-cols-2 text-left">
             <h1 class="font-semibold text-lg focus:text-primary">{{ link.nome }}</h1>
             <span class="font-normal text-xs ml-6 mt-1">{{
-              moment(date).format("DD/MM/YYYY")
+              Dates(link.created_at)
             }}</span>
 
             <button class="mt-3 text-sm underline decoration-solid w-0 text-primary">
@@ -39,9 +39,14 @@
         >
           <div class="flex items-center gap-10">
             <h1 class="text-2xl font-semibold">{{ link.nome }}</h1>
-            <span class="text-sm text-gray-500 font-normal"
-              >Criado em: {{ moment(date).format("DD/MM/YYYY [às] hh:mm") }}
-            </span>
+            <div class="grid gap-2">
+              <span class="text-xs text-gray-500 font-normal"
+                >Criado em: {{ dateHours(link.created_at) }}
+              </span>
+              <span class="text-xs text-gray-500 font-normal"
+                >Atualizado em: {{ dateHours(link.updated_at) }}
+              </span>
+            </div>
           </div>
 
           <div class="mt-6 flex items-center gap-16 border-b-2 border-gray-100 pb-4">
@@ -213,6 +218,13 @@ export default {
   },
 
   methods: {
+    dateHours(date) {
+      return moment(date).format("DD/MM/YYYY [às] HH:mm");
+    },
+    Dates(date) {
+      return moment(date).format("DD/MM/YYYY");
+    },
+
     btnShowLinks() {
       this.ShowLinks = !this.ShowLinks;
     },
@@ -228,14 +240,18 @@ export default {
         name: this.name,
         email: this.email,
       };
-      this.$http.post("adicionar", data).then((response) => {
-        if (response.data == "success") {
+
+      if (this.nome.length < 4) {
+        alert("erro");
+      } else {
+        this.$http.post("adicionar", data).then((response) => {
           setTimeout(() => {
             this.$swal("Sucesso", "Link adicionado com sucesso", "success");
             this.$router.push("/listar");
           }, 1300);
-        }
-      });
+          console.log(response);
+        });
+      }
 
       this.listagem.push(data2);
       this.name = "";
