@@ -115,6 +115,8 @@ import ModalDelete from "./ModalDelete.vue";
 
 export default {
   name: "RedirectEdit",
+  components: { ModalDelete },
+
   data() {
     return {
       nome: "",
@@ -129,15 +131,22 @@ export default {
       });
     },
     update() {
-      setTimeout(() => {
-        this.$swal("Sucesso", "Link editado com sucesso", "success");
-        this.$router.push("/listar");
-      }, 1300);
+      var data = {
+        name: this.nome,
+        email: this.email,
+      };
+      this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
+        if (response.data == "success") {
+          setTimeout(() => {
+            this.$swal("Sucesso", "Link editado com sucesso", "success");
+            this.$router.push("/listar");
+          }, 1300);
+        }
+      });
     },
   },
   created() {
     this.getUser();
   },
-  components: { ModalDelete },
 };
 </script>

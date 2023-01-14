@@ -229,8 +229,6 @@ export default {
       this.ShowLinks = !this.ShowLinks;
     },
 
-    addListagem() {},
-
     addLink() {
       var data = {
         name: this.nome,
@@ -242,19 +240,19 @@ export default {
       };
 
       if (this.nome.length < 4) {
-        alert("erro");
+        return "error";
       } else {
         this.$http.post("adicionar", data).then((response) => {
           setTimeout(() => {
             this.$swal("Sucesso", "Link adicionado com sucesso", "success");
             this.$router.push("/listar");
-          }, 1300);
+          }, 1000);
           console.log(response);
         });
       }
 
       this.listagem.push(data2);
-      this.name = "";
+      this.nome = "";
       this.email = "";
     },
 

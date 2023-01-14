@@ -3,9 +3,17 @@
     <input type="checkbox" id="my-modal" class="modal-toggle" />
     <div class="modal">
       <div class="modal-box rounded-none">
-        <h1 class="font-semibold text-xl text-center">Tem certeza que deseja excluir?</h1>
+        <label for="my-modal">
+          <img
+            class="w-3 cursor-pointer invert float-right"
+            src="../assets/img/close.svg"
+          />
+        </label>
+        <h1 class="font-semibold text-xl text-center mt-12">
+          Tem certeza que deseja excluir?
+        </h1>
 
-        <div class="modal-action justify-center mt-14">
+        <div class="modal-action justify-center mt-9">
           <label for="my-modal" class="btn">NÃO, CANCELAR</label>
           <label
             @click="deletar"
