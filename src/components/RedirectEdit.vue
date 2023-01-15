@@ -38,6 +38,7 @@
         <div class="flex items-center justify-between mt-14">
           <h1 class="font-semibold text-base">02</h1>
           <input
+            v-model="linktwo"
             type="text"
             placeholder="Insira a URL 2"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4"
@@ -52,6 +53,7 @@
         <div class="flex items-center justify-between mt-14">
           <h1 class="font-semibold text-base">03</h1>
           <input
+            v-model="linkthree"
             type="text"
             placeholder="Insira a URL 3"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4"
@@ -121,6 +123,8 @@ export default {
     return {
       nome: "",
       email: "",
+      linktwo: "",
+      linkthree: "",
     };
   },
   methods: {
@@ -128,12 +132,16 @@ export default {
       this.$http.get(`editar/${this.$route.params.id}`).then((response) => {
         this.nome = response.data.nome;
         this.email = response.data.email;
+        this.linktwo = response.data.linktwo;
+        this.linkthree = response.data.linkthree;
       });
     },
     update() {
       var data = {
         name: this.nome,
         email: this.email,
+        linktwo: this.linktwo,
+        linkthree: this.linkthree,
       };
       this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
         if (response.data == "success") {

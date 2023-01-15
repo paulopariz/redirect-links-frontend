@@ -65,9 +65,7 @@
             <div>
               <div class="flex items-center gap-5 mb-3 2">
                 <h1 class="text-primary text-sm font-semibold">01</h1>
-                <a href="" class="text-gray-500 text-sm font-normal"
-                  >https://www.notion.so/Green-club-8d477635100044e4b3c5ca81c479fbdc</a
-                >
+                <a href="" class="text-gray-500 text-sm font-normal">{{ link.email }}</a>
               </div>
               <span class="text-primary ml-8 text-xs">02/750</span>
             </div>
@@ -76,9 +74,9 @@
             <div>
               <div class="flex items-center gap-5 mb-3 2">
                 <h1 class="text-primary text-sm font-semibold">02</h1>
-                <a href="" class="text-gray-500 text-sm font-normal"
-                  >https://www.notion.so/Green-club-8d477635100044e4b3c5ca81c479fbdc</a
-                >
+                <a href="" class="text-gray-500 text-sm font-normal">{{
+                  link.linktwo
+                }}</a>
               </div>
               <span class="text-primary ml-8 text-xs">02/750</span>
             </div>
@@ -87,9 +85,9 @@
             <div>
               <div class="flex items-center gap-5 mb-3 2">
                 <h1 class="text-primary text-sm font-semibold">03</h1>
-                <a href="" class="text-gray-500 text-sm font-normal"
-                  >https://www.notion.so/Green-club-8d477635100044e4b3c5ca81c479fbdc</a
-                >
+                <a href="" class="text-gray-500 text-sm font-normal">{{
+                  link.linkthree
+                }}</a>
               </div>
               <span class="text-primary ml-8 text-xs">02/750</span>
             </div>
@@ -148,6 +146,7 @@
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">02</h1>
               <input
+                v-model="linktwo"
                 type="text"
                 placeholder="Insira a URL 2"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
@@ -162,6 +161,7 @@
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">03</h1>
               <input
+                v-model="linkthree"
                 type="text"
                 placeholder="Insira a URL 3"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
@@ -211,6 +211,8 @@ export default {
       listagem: [],
       name: "",
       email: "",
+      linktwo: "",
+      linkthree: "",
       deleteAlert: false,
 
       ShowLinks: false,
@@ -233,19 +235,24 @@ export default {
       var data = {
         name: this.nome,
         email: this.email,
+        linktwo: this.linktwo,
+        linkthree: this.linkthree,
       };
       var data2 = {
         name: this.name,
         email: this.email,
+        linktwo: this.linktwo,
+        linkthree: this.linkthree,
       };
 
       if (this.nome.length < 4) {
         return "error";
       } else {
         this.$http.post("adicionar", data).then((response) => {
+          this.$swal("Sucesso", "Link adicionado com sucesso", "success");
+          this.$router.push("/listar");
           setTimeout(() => {
-            this.$swal("Sucesso", "Link adicionado com sucesso", "success");
-            this.$router.push("/listar");
+            document.location.reload(true);
           }, 1000);
           console.log(response);
         });
@@ -254,6 +261,8 @@ export default {
       this.listagem.push(data2);
       this.nome = "";
       this.email = "";
+      this.linktwo = "";
+      this.linkthree = "";
     },
 
     showListagem() {
