@@ -26,7 +26,7 @@
             </button>
           </div>
 
-          <span class="text-sm font-normal">👉 02/750 </span>
+          <span class="text-sm font-normal">👉 02/{{ link.maxclick }} </span>
         </div>
       </div>
 
@@ -65,31 +65,27 @@
             <div>
               <div class="flex items-center gap-5 mb-3 2">
                 <h1 class="text-primary text-sm font-semibold">01</h1>
-                <a href="" class="text-gray-500 text-sm font-normal">{{ link.email }}</a>
+                <p class="text-gray-500 text-sm font-normal">{{ link.linkone }}</p>
               </div>
-              <span class="text-primary ml-8 text-xs">02/750</span>
+              <span class="text-primary ml-8 text-xs">00/{{ link.maxclick }}</span>
             </div>
           </div>
           <div class="mt-11">
             <div>
               <div class="flex items-center gap-5 mb-3 2">
                 <h1 class="text-primary text-sm font-semibold">02</h1>
-                <a href="" class="text-gray-500 text-sm font-normal">{{
-                  link.linktwo
-                }}</a>
+                <p class="text-gray-500 text-sm font-normal">{{ link.linktwo }}</p>
               </div>
-              <span class="text-primary ml-8 text-xs">02/750</span>
+              <span class="text-primary ml-8 text-xs">00/{{ link.maxclick }}</span>
             </div>
           </div>
           <div class="mt-11">
             <div>
               <div class="flex items-center gap-5 mb-3 2">
                 <h1 class="text-primary text-sm font-semibold">03</h1>
-                <a href="" class="text-gray-500 text-sm font-normal">{{
-                  link.linkthree
-                }}</a>
+                <p class="text-gray-500 text-sm font-normal">{{ link.linkthree }}</p>
               </div>
-              <span class="text-primary ml-8 text-xs">02/750</span>
+              <span class="text-primary ml-8 text-xs">00/{{ link.maxclick }}</span>
             </div>
           </div>
         </div>
@@ -131,13 +127,14 @@
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">01</h1>
               <input
-                v-model="email"
+                v-model="linkone"
                 type="text"
                 placeholder="Insira a URL 1"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
               />
 
               <input
+                v-model="maxclick"
                 class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
                 placeholder="qtd cliques"
                 type="number"
@@ -153,6 +150,7 @@
               />
 
               <input
+                v-model="maxclick"
                 class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
                 placeholder="qtd cliques"
                 type="number"
@@ -168,6 +166,7 @@
               />
 
               <input
+                v-model="maxclick"
                 class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
                 placeholder="qtd cliques"
                 type="number"
@@ -182,6 +181,7 @@
               chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
             </p>
             <input
+              v-model="linktdefault"
               type="text"
               placeholder="Insira a URL Default"
               class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-6 focus:outline-none w-3/4"
@@ -209,10 +209,14 @@ export default {
     return {
       moment: moment,
       listagem: [],
+
       name: "",
-      email: "",
+      linkone: "",
       linktwo: "",
       linkthree: "",
+      linktdefault: "",
+      maxclick: "",
+
       deleteAlert: false,
 
       ShowLinks: false,
@@ -234,15 +238,19 @@ export default {
     addLink() {
       var data = {
         name: this.nome,
-        email: this.email,
+        linkone: this.linkone,
         linktwo: this.linktwo,
         linkthree: this.linkthree,
+        linktdefault: this.linktdefault,
+        maxclick: this.maxclick,
       };
       var data2 = {
         name: this.name,
-        email: this.email,
+        linkone: this.linkone,
         linktwo: this.linktwo,
         linkthree: this.linkthree,
+        linktdefault: this.linktdefault,
+        maxclick: this.maxclick,
       };
 
       if (this.nome.length < 4) {
@@ -260,9 +268,11 @@ export default {
 
       this.listagem.push(data2);
       this.nome = "";
-      this.email = "";
+      this.linkone = "";
       this.linktwo = "";
       this.linkthree = "";
+      this.linktdefault = "";
+      this.maxclick = "";
     },
 
     showListagem() {

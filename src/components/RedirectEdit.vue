@@ -23,13 +23,14 @@
         <div class="flex items-center justify-between mt-8">
           <h1 class="font-semibold text-base">01</h1>
           <input
-            v-model="email"
+            v-model="linkone"
             type="text"
             placeholder="Insira a URL 1"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4"
           />
 
           <input
+            v-model="maxclick"
             class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
             placeholder="qtd cliques"
             type="number"
@@ -45,6 +46,7 @@
           />
 
           <input
+            v-model="maxclick"
             class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
             placeholder="qtd cliques"
             type="number"
@@ -60,6 +62,7 @@
           />
 
           <input
+            v-model="maxclick"
             class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
             placeholder="qtd cliques"
             type="number"
@@ -74,6 +77,7 @@
           chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
         </p>
         <input
+          v-model="linktdefault"
           type="text"
           placeholder="Insira a URL Default"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-8 focus:outline-none w-3/4"
@@ -122,26 +126,32 @@ export default {
   data() {
     return {
       nome: "",
-      email: "",
+      linkone: "",
       linktwo: "",
       linkthree: "",
+      linktdefault: "",
+      maxclick: "",
     };
   },
   methods: {
     getUser() {
       this.$http.get(`editar/${this.$route.params.id}`).then((response) => {
         this.nome = response.data.nome;
-        this.email = response.data.email;
+        this.linkone = response.data.linkone;
         this.linktwo = response.data.linktwo;
         this.linkthree = response.data.linkthree;
+        this.linktdefault = response.data.linktdefault;
+        this.maxclick = response.data.maxclick;
       });
     },
     update() {
       var data = {
         name: this.nome,
-        email: this.email,
+        linkone: this.linkone,
         linktwo: this.linktwo,
         linkthree: this.linkthree,
+        linktdefault: this.linktdefault,
+        maxclick: this.maxclick,
       };
       this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
         if (response.data == "success") {
