@@ -30,7 +30,7 @@
           />
 
           <input
-            v-model="maxclick"
+            v-model="maxclickOne"
             class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
             placeholder="qtd cliques"
             type="number"
@@ -46,7 +46,7 @@
           />
 
           <input
-            v-model="maxclick"
+            v-model="maxclickTwo"
             class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
             placeholder="qtd cliques"
             type="number"
@@ -62,7 +62,7 @@
           />
 
           <input
-            v-model="maxclick"
+            v-model="maxclickThree"
             class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
             placeholder="qtd cliques"
             type="number"

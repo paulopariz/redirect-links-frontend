@@ -26,7 +26,7 @@
             </button>
           </div>
 
-          <span class="text-sm font-normal">👉 02/{{ link.maxclick }} </span>
+          <span class="text-sm font-normal">👉 00/{{ link.maxclickOne }} </span>
         </div>
       </div>
 
@@ -67,7 +67,7 @@
                 <h1 class="text-primary text-sm font-semibold">01</h1>
                 <p class="text-gray-500 text-sm font-normal">{{ link.linkone }}</p>
               </div>
-              <span class="text-primary ml-8 text-xs">00/{{ link.maxclick }}</span>
+              <span class="text-primary ml-8 text-xs">00/{{ link.maxclickOne }}</span>
             </div>
           </div>
           <div class="mt-11">
@@ -76,7 +76,7 @@
                 <h1 class="text-primary text-sm font-semibold">02</h1>
                 <p class="text-gray-500 text-sm font-normal">{{ link.linktwo }}</p>
               </div>
-              <span class="text-primary ml-8 text-xs">00/{{ link.maxclick }}</span>
+              <span class="text-primary ml-8 text-xs">00/{{ link.maxclickTwo }}</span>
             </div>
           </div>
           <div class="mt-11">
@@ -85,7 +85,7 @@
                 <h1 class="text-primary text-sm font-semibold">03</h1>
                 <p class="text-gray-500 text-sm font-normal">{{ link.linkthree }}</p>
               </div>
-              <span class="text-primary ml-8 text-xs">00/{{ link.maxclick }}</span>
+              <span class="text-primary ml-8 text-xs">00/{{ link.maxclickThree }}</span>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@
               />
 
               <input
-                v-model="maxclick"
+                v-model="maxclickOne"
                 class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
                 placeholder="qtd cliques"
                 type="number"
@@ -150,7 +150,7 @@
               />
 
               <input
-                v-model="maxclick"
+                v-model="maxclickTwo"
                 class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
                 placeholder="qtd cliques"
                 type="number"
@@ -166,7 +166,7 @@
               />
 
               <input
-                v-model="maxclick"
+                v-model="maxclickThree"
                 class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
                 placeholder="qtd cliques"
                 type="number"
@@ -215,7 +215,11 @@ export default {
       linktwo: "",
       linkthree: "",
       linktdefault: "",
-      maxclick: "",
+      maxclickOne: "",
+      maxclickTwo: "",
+      maxclickThree: "",
+      
+      
 
       deleteAlert: false,
 
@@ -242,7 +246,10 @@ export default {
         linktwo: this.linktwo,
         linkthree: this.linkthree,
         linktdefault: this.linktdefault,
-        maxclick: this.maxclick,
+        maxclickOne: this.maxclickOne,
+        maxclickTwo: this.maxclickTwo,
+        maxclickThree: this.maxclickThree,
+
       };
       var data2 = {
         name: this.name,
@@ -250,7 +257,10 @@ export default {
         linktwo: this.linktwo,
         linkthree: this.linkthree,
         linktdefault: this.linktdefault,
-        maxclick: this.maxclick,
+        maxclickOne: this.maxclickOne,
+        maxclickTwo: this.maxclickTwo,
+        maxclickThree: this.maxclickThree,
+
       };
 
       if (this.nome.length < 4) {
@@ -272,7 +282,10 @@ export default {
       this.linktwo = "";
       this.linkthree = "";
       this.linktdefault = "";
-      this.maxclick = "";
+      this.maxclickOne = "";
+      this.maxclickTwo = "";
+      this.maxclickThree = "";
+
     },
 
     showListagem() {
