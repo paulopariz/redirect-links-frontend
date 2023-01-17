@@ -26,7 +26,7 @@
             </button>
           </div>
 
-          <span @click="maxClicksLinks()" class="text-sm font-normal"
+          <span class="text-sm font-normal"
             >👉
             {{
               parseInt(link.maxclickOne) +
@@ -231,7 +231,6 @@
           >
 
           <button
-            v-else
             type="submit"
             @click="addLink"
             for="my-modal"
