@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="flex items-center mt-12">
-      <div class="border-gray-100 border-t-2 border-r-2 h-screen w-5/12">
+      <div class="border-gray-100 border-t-2 h-screen w-5/12">
         <div
           class="flex items-center justify-between mt-2 border-b-2 border-gray-100 py-5 pr-8"
         >
           <h1 class="text-primary font-semibold">{{ listagem.length }} Links</h1>
-          <p class="font-normal text-gray-500 text-sm">Cliques</p>
+          <p class="font-normal text-gray-500 text-sm">Máximo de cliques</p>
         </div>
 
         <div
@@ -26,17 +26,19 @@
             </button>
           </div>
 
-          <span class="text-sm font-normal">👉 00/{{ link.maxclickOne }} </span>
+          <span @click="maxClicksLinks()" class="text-sm font-normal"
+            >👉
+            {{
+              parseInt(link.maxclickOne) +
+              parseInt(link.maxclickTwo) +
+              parseInt(link.maxclickThree)
+            }}
+          </span>
         </div>
       </div>
 
-      <div class="border-gray-100 border-t-2 h-screen w-7/12">
-        <div
-          class="mt-20 pl-8"
-          v-show="ShowLinks"
-          v-for="link in listagem"
-          :key="link.id"
-        >
+      <div class="border-gray-100 border-t-2 border-l-2 h-screen w-7/12">
+        <div class="mt-20 pl-8 pb-5" v-for="link in listagem" :key="link.id">
           <div class="flex items-center gap-10">
             <h1 class="text-2xl font-semibold">{{ link.nome }}</h1>
             <div class="grid gap-2">
@@ -50,9 +52,9 @@
           </div>
 
           <div class="mt-6 flex items-center gap-16 border-b-2 border-gray-100 pb-4">
-            <router-link class="text-sm underline decoration-solid tracking-wider" to=""
-              >Clique aqui para acessar
-            </router-link>
+            <button class="text-sm underline decoration-solid tracking-wider">
+              Clique aqui para acessar
+            </button>
 
             <router-link :to="{ name: 'editar', params: { id: link.id } }">
               <button class="btn btn-outline btn-primary text-xs px-10 py-2 btn-sm">
@@ -189,7 +191,7 @@
           </div>
           <label
             @click="addLink"
-            for="my-modal-5"
+            for="my-modal"
             class="btn mt-4 py-3 px-6 text-xs rounded-md btn-primary btn-wide float-right mb-4"
           >
             Salvar Link 💪
@@ -218,10 +220,6 @@ export default {
       maxclickOne: "",
       maxclickTwo: "",
       maxclickThree: "",
-      
-      
-
-      deleteAlert: false,
 
       ShowLinks: false,
     };
@@ -249,7 +247,6 @@ export default {
         maxclickOne: this.maxclickOne,
         maxclickTwo: this.maxclickTwo,
         maxclickThree: this.maxclickThree,
-
       };
       var data2 = {
         name: this.name,
@@ -260,21 +257,17 @@ export default {
         maxclickOne: this.maxclickOne,
         maxclickTwo: this.maxclickTwo,
         maxclickThree: this.maxclickThree,
-
       };
 
-      if (this.nome.length < 4) {
-        return "error";
-      } else {
-        this.$http.post("adicionar", data).then((response) => {
+      this.$http.post("adicionar", data).then((response) => {
+        if (response.data == "error") {
           this.$swal("Sucesso", "Link adicionado com sucesso", "success");
           this.$router.push("/listar");
           setTimeout(() => {
             document.location.reload(true);
           }, 1000);
-          console.log(response);
-        });
-      }
+        }
+      });
 
       this.listagem.push(data2);
       this.nome = "";
@@ -285,7 +278,6 @@ export default {
       this.maxclickOne = "";
       this.maxclickTwo = "";
       this.maxclickThree = "";
-
     },
 
     showListagem() {

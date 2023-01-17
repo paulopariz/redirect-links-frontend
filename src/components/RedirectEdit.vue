@@ -130,7 +130,9 @@ export default {
       linktwo: "",
       linkthree: "",
       linktdefault: "",
-      maxclick: "",
+      maxclickOne: "",
+      maxclickTwo: "",
+      maxclickThree: "",
     };
   },
   methods: {
@@ -141,7 +143,9 @@ export default {
         this.linktwo = response.data.linktwo;
         this.linkthree = response.data.linkthree;
         this.linktdefault = response.data.linktdefault;
-        this.maxclick = response.data.maxclick;
+        this.maxclickOne = response.data.maxclickOne;
+        this.maxclickTwo = response.data.maxclickTwo;
+        this.maxclickThree = response.data.maxclickThree;
       });
     },
     update() {
@@ -151,7 +155,9 @@ export default {
         linktwo: this.linktwo,
         linkthree: this.linkthree,
         linktdefault: this.linktdefault,
-        maxclick: this.maxclick,
+        maxclickOne: this.maxclickOne,
+        maxclickTwo: this.maxclickTwo,
+        maxclickThree: this.maxclickThree,
       };
       this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
         if (response.data == "success") {
