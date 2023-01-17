@@ -33,7 +33,7 @@ export default {
 
   methods: {
     deletar() {
-      this.$http.delete(`deletar/${this.$route.params.id}`).then((response) => {
+      this.$redirect.delete(`deletar/${this.$route.params.id}`).then((response) => {
         if (response.data == "success") {
           setTimeout(() => {
             this.$swal("Sucesso", "Link deletado com sucesso", "success");

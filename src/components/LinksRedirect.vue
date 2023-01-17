@@ -37,8 +37,12 @@
         </div>
       </div>
 
-      <div class="border-gray-100 border-t-2 border-l-2 h-screen w-7/12">
-        <div class="mt-20 pl-8 pb-5" v-for="link in listagem" :key="link.id">
+      <div class="border-gray-100 border-t-2 h-screen w-7/12">
+        <div
+          class="pl-8 pb-5 border-l-2 border-gray-100 pt-20"
+          v-for="link in listagem"
+          :key="link.id"
+        >
           <div class="flex items-center gap-10">
             <h1 class="text-2xl font-semibold">{{ link.nome }}</h1>
             <div class="grid gap-2">
@@ -110,11 +114,14 @@
           <div class="grid">
             <label class="text-sm font-semibold">Título do Link</label>
             <input
-              v-model="nome"
+              v-model.trim="$v.nome.$model"
               type="text"
               placeholder="Ex: Link Legal"
               class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-6 focus:outline-none w-3/4"
             />
+            <span class="text-red-600 mt-2 text-xs" v-if="$v.nome.$error"
+              >Minímo 6 caracteres</span
+            >
           </div>
 
           <div class="mt-6">
@@ -129,50 +136,80 @@
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">01</h1>
               <input
-                v-model="linkone"
+                v-model.trim="$v.linkone.$model"
                 type="text"
                 placeholder="Insira a URL 1"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
               />
 
-              <input
-                v-model="maxclickOne"
-                class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
-                placeholder="qtd cliques"
-                type="number"
-              />
+              <div class="grid">
+                <input
+                  v-model.trim="$v.maxclickOne.$model"
+                  class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
+                  placeholder="qtd cliques"
+                  type="number"
+                />
+                <span class="text-red-600 mt-2 text-xs" v-if="$v.maxclickOne.$error"
+                  >Minímo 1 clique</span
+                >
+              </div>
+            </div>
+            <div>
+              <span class="text-red-600 mt-2 text-xs ml-10" v-if="$v.linkone.$error"
+                >URL inválida</span
+              >
             </div>
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">02</h1>
               <input
-                v-model="linktwo"
+                v-model.trim="$v.linktwo.$model"
                 type="text"
                 placeholder="Insira a URL 2"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
               />
 
-              <input
-                v-model="maxclickTwo"
-                class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
-                placeholder="qtd cliques"
-                type="number"
-              />
+              <div class="grid">
+                <input
+                  v-model.trim="$v.maxclickTwo.$model"
+                  class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
+                  placeholder="qtd cliques"
+                  type="number"
+                />
+                <span class="text-red-600 mt-2 text-xs" v-if="$v.maxclickTwo.$error"
+                  >Minímo 1 clique</span
+                >
+              </div>
+            </div>
+            <div>
+              <span class="text-red-600 mt-2 text-xs ml-10" v-if="$v.linktwo.$error"
+                >URL inválida</span
+              >
             </div>
             <div class="flex items-center justify-between mt-8">
               <h1 class="font-semibold text-sm">03</h1>
               <input
-                v-model="linkthree"
+                v-model.trim="$v.linkthree.$model"
                 type="text"
                 placeholder="Insira a URL 3"
                 class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-3 focus:outline-none w-3/4"
               />
 
-              <input
-                v-model="maxclickThree"
-                class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
-                placeholder="qtd cliques"
-                type="number"
-              />
+              <div class="grid">
+                <input
+                  v-model.trim="$v.maxclickThree.$model"
+                  class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs focus:outline-none"
+                  placeholder="qtd cliques"
+                  type="number"
+                />
+                <span class="text-red-600 mt-2 text-xs" v-if="$v.maxclickThree.$error"
+                  >Minímo 1 clique</span
+                >
+              </div>
+            </div>
+            <div>
+              <span class="text-red-600 mt-2 text-xs ml-10" v-if="$v.linkthree.$error"
+                >URL inválida</span
+              >
             </div>
           </div>
 
@@ -183,19 +220,25 @@
               chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
             </p>
             <input
-              v-model="linktdefault"
+              v-model.trim="$v.linktdefault.$model"
               type="text"
               placeholder="Insira a URL Default"
               class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-xs outline-none mt-6 focus:outline-none w-3/4"
             />
           </div>
-          <label
+          <span class="text-red-600 mt-2 text-xs" v-if="$v.linktdefault.$error"
+            >URL inválida</span
+          >
+
+          <button
+            v-else
+            type="submit"
             @click="addLink"
             for="my-modal"
             class="btn mt-4 py-3 px-6 text-xs rounded-md btn-primary btn-wide float-right mb-4"
           >
             Salvar Link 💪
-          </label>
+          </button>
         </div>
       </div>
     </div>
@@ -204,6 +247,8 @@
 
 <script>
 import moment from "moment";
+import { required, minLength, minValue, url } from "vuelidate/lib/validators";
+
 export default {
   name: "LinksRedirect",
 
@@ -212,7 +257,7 @@ export default {
       moment: moment,
       listagem: [],
 
-      name: "",
+      nome: "",
       linkone: "",
       linktwo: "",
       linkthree: "",
@@ -223,6 +268,42 @@ export default {
 
       ShowLinks: false,
     };
+  },
+
+  //VALIDAÇÃO
+  validations: {
+    nome: {
+      required,
+      minLength: minLength(6),
+    },
+    maxclickOne: {
+      required,
+      minValueValue: minValue(1),
+    },
+    maxclickTwo: {
+      minValueValue: minValue(1),
+      required,
+    },
+    maxclickThree: {
+      minValueValue: minValue(1),
+      required,
+    },
+    linkone: {
+      url,
+      required,
+    },
+    linktwo: {
+      url,
+      required,
+    },
+    linkthree: {
+      url,
+      required,
+    },
+    linktdefault: {
+      url,
+      required,
+    },
   },
 
   methods: {
@@ -259,8 +340,8 @@ export default {
         maxclickThree: this.maxclickThree,
       };
 
-      this.$http.post("adicionar", data).then((response) => {
-        if (response.data == "error") {
+      this.$redirect.post("adicionar", data).then((response) => {
+        if (response.data == "success") {
           this.$swal("Sucesso", "Link adicionado com sucesso", "success");
           this.$router.push("/listar");
           setTimeout(() => {
@@ -281,7 +362,7 @@ export default {
     },
 
     showListagem() {
-      this.$http.get("listar").then((response) => {
+      this.$redirect.get("listar").then((response) => {
         this.listagem = response.data;
       });
     },

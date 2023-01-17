@@ -5,6 +5,7 @@ import store from './store'
 import './plugins/axios'
 import './assets/css/main.css'
 import VueSweetalert2 from "vue-sweetalert2"
+import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
 
@@ -15,7 +16,7 @@ Vue.use(VueSweetalert2);
 
 Vue.use(require('vue-moment'));
 
-
+Vue.use(Vuelidate)
 
 new Vue({
   router,

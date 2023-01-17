@@ -4,11 +4,15 @@
       <div class="grid">
         <label class="text-xl font-semibold">Título do Link</label>
         <input
-          v-model="nome"
+          v-model.trim="$v.nome.$model"
+          :class="{ error: $v.nome.$error }"
           type="text"
           placeholder="Ex: Link Legal"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-6 focus:outline-none w-3/4"
         />
+        <span class="text-red-600 mt-2 text-xs" v-if="$v.nome.$error"
+          >Minímo 6 caracteres</span
+        >
       </div>
 
       <div class="mt-14">
@@ -23,50 +27,80 @@
         <div class="flex items-center justify-between mt-8">
           <h1 class="font-semibold text-base">01</h1>
           <input
-            v-model="linkone"
+            v-model.trim="$v.linkone.$model"
             type="text"
             placeholder="Insira a URL 1"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4"
           />
 
-          <input
-            v-model="maxclickOne"
-            class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
-            placeholder="qtd cliques"
-            type="number"
-          />
+          <div class="grid">
+            <input
+              v-model.trim="$v.maxclickOne.$model"
+              class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
+              placeholder="qtd cliques"
+              type="number"
+            />
+            <span class="text-red-600 mt-2 text-xs" v-if="$v.maxclickOne.$error"
+              >Minímo 1 clique</span
+            >
+          </div>
+        </div>
+        <div>
+          <span class="text-red-600 mt-2 text-xs ml-36" v-if="$v.linkone.$error"
+            >URL inválida</span
+          >
         </div>
         <div class="flex items-center justify-between mt-14">
           <h1 class="font-semibold text-base">02</h1>
           <input
-            v-model="linktwo"
+            v-model.trim="$v.linktwo.$model"
             type="text"
             placeholder="Insira a URL 2"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4"
           />
 
-          <input
-            v-model="maxclickTwo"
-            class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
-            placeholder="qtd cliques"
-            type="number"
-          />
+          <div class="grid">
+            <input
+              v-model.trim="$v.maxclickTwo.$model"
+              class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
+              placeholder="qtd cliques"
+              type="number"
+            />
+            <span class="text-red-600 mt-2 text-xs" v-if="$v.maxclickTwo.$error"
+              >Minímo 1 clique</span
+            >
+          </div>
+        </div>
+        <div>
+          <span class="text-red-600 mt-2 text-xs ml-36" v-if="$v.linktwo.$error"
+            >URL inválida</span
+          >
         </div>
         <div class="flex items-center justify-between mt-14">
           <h1 class="font-semibold text-base">03</h1>
           <input
-            v-model="linkthree"
+            v-model.trim="$v.linkthree.$model"
             type="text"
             placeholder="Insira a URL 3"
             class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-3 focus:outline-none w-3/4"
           />
 
-          <input
-            v-model="maxclickThree"
-            class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
-            placeholder="qtd cliques"
-            type="number"
-          />
+          <div class="grid">
+            <input
+              v-model.trim="$v.maxclickThree.$model"
+              class="w-24 mt-3 border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm focus:outline-none"
+              placeholder="qtd cliques"
+              type="number"
+            />
+            <span class="text-red-600 mt-2 text-xs" v-if="$v.maxclickThree.$error"
+              >Minímo 1 clique</span
+            >
+          </div>
+        </div>
+        <div>
+          <span class="text-red-600 mt-2 text-xs ml-36" v-if="$v.linkthree.$error"
+            >URL inválida</span
+          >
         </div>
       </div>
 
@@ -77,12 +111,15 @@
           chegarem ao limite de cliques. Ela será a uma url fixa sem limitação.
         </p>
         <input
-          v-model="linktdefault"
+          v-model.trim="$v.linktdefault.$model"
           type="text"
           placeholder="Insira a URL Default"
           class="border-b-2 text-gray-500 border-gray-100 pl-2 pb-2 text-sm outline-none mt-8 focus:outline-none w-3/4"
         />
       </div>
+      <span class="text-red-600 mt-2 text-xs" v-if="$v.linktdefault.$error"
+        >URL inválida</span
+      >
 
       <div class="flex items-center justify-between mb-4 mt-12">
         <div>
@@ -118,6 +155,7 @@
 
 <script>
 import ModalDelete from "./ModalDelete.vue";
+import { required, minLength, url, minValue } from "vuelidate/lib/validators";
 
 export default {
   name: "RedirectEdit",
@@ -135,9 +173,45 @@ export default {
       maxclickThree: "",
     };
   },
+
+  validations: {
+    nome: {
+      required,
+      minLength: minLength(6),
+    },
+    maxclickOne: {
+      required,
+      minValueValue: minValue(1),
+    },
+    maxclickTwo: {
+      minValueValue: minValue(1),
+      required,
+    },
+    maxclickThree: {
+      minValueValue: minValue(1),
+      required,
+    },
+    linkone: {
+      url,
+      required,
+    },
+    linktwo: {
+      url,
+      required,
+    },
+    linkthree: {
+      url,
+      required,
+    },
+    linktdefault: {
+      url,
+      required,
+    },
+  },
+
   methods: {
-    getUser() {
-      this.$http.get(`editar/${this.$route.params.id}`).then((response) => {
+    editLink() {
+      this.$redirect.get(`editar/${this.$route.params.id}`).then((response) => {
         this.nome = response.data.nome;
         this.linkone = response.data.linkone;
         this.linktwo = response.data.linktwo;
@@ -159,7 +233,7 @@ export default {
         maxclickTwo: this.maxclickTwo,
         maxclickThree: this.maxclickThree,
       };
-      this.$http.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
+      this.$redirect.put(`atualizar/${this.$route.params.id}`, data).then((response) => {
         if (response.data == "success") {
           setTimeout(() => {
             this.$swal("Sucesso", "Link editado com sucesso", "success");
@@ -170,7 +244,7 @@ export default {
     },
   },
   created() {
-    this.getUser();
+    this.editLink();
   },
 };
 </script>
