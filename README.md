@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/111146928/216439778-bdc882c3-3be1-4f0c
 
 <br><br>
 
-## 🛠️ TECNOLOGIAS:
+## 🛠️ TECNOLOGIAS FRONT-END:
 
 <br>
 
@@ -18,18 +18,26 @@ https://user-images.githubusercontent.com/111146928/216439778-bdc882c3-3be1-4f0c
 | :----------------: | :---------------------------------------------------: |
 |   <img src="https://skillicons.dev/icons?i=vue">      |    `VUEJS`   |
 |   <img src="https://skillicons.dev/icons?i=js">      |    `JAVASCRIPT`   |
-|   <img src="https://skillicons.dev/icons?i=php">      |    `PHP`   |
-|   <img src="https://skillicons.dev/icons?i=laravel">      |    `LARAVEL`   |
 |   <img src="https://skillicons.dev/icons?i=tailwind">      |    `TAILWIND`   |
 |   <img >      |    `MOMENTJS`   |
 |   <img >      |    `AXIOS`   |
 |   <img >      |    `VUELIDATE`   |
-|  
+
+<br>
+
+## 🛠️ TECNOLOGIAS BACK-END:
+
+<br>
+
+|              |                                                   |
+| :----------------: | :---------------------------------------------------: |
+|   <img src="https://skillicons.dev/icons?i=php">      |    `PHP`   |
+|   <img src="https://skillicons.dev/icons?i=laravel">      |    `LARAVEL`   |
 
 <br>
 
 ## 🔗 Link da API:
-- <a href="">CLIQUE AQUI</a> para ir pro repositório da API.
+- <a href="https://github.com/paulopariz/redirect-links-backend">CLIQUE AQUI</a> para ir pro repositório da API.
 
 <br>
 
